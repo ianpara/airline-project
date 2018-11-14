@@ -14,13 +14,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema airline
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `airline` DEFAULT CHARACTER SET utf8mb4 ;
-USE `airline` ;
+CREATE SCHEMA IF NOT EXISTS `airline1` DEFAULT CHARACTER SET utf8mb4 ;
+USE `airline1` ;
 
 -- -----------------------------------------------------
 -- Table `airline`.`customer`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `airline`.`customer` (
+CREATE TABLE IF NOT EXISTS `airline1`.`customer` (
   `idcustomer` INT(11) NOT NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -37,7 +37,7 @@ COLLATE = DEFAULT;
 -- -----------------------------------------------------
 -- Table `airline`.`flight`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `airline`.`flight` (
+CREATE TABLE IF NOT EXISTS `airline1`.`flight` (
   `idflight` INT(11) NOT NULL,
   `available_seats` INT(11) NOT NULL,
   `price` DOUBLE NOT NULL,
@@ -54,7 +54,7 @@ COLLATE = DEFAULT;
 -- -----------------------------------------------------
 -- Table `airline`.`ticket`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `airline`.`ticket` (
+CREATE TABLE IF NOT EXISTS `airline1`.`ticket` (
   `idticket` INT(11) NOT NULL,
   `idcustomer` INT(11) NOT NULL,
   `idflight` INT(11) NOT NULL,
