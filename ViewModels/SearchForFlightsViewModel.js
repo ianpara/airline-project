@@ -15,6 +15,7 @@ var SearchForFlightsViewModel = function() {
     self.ArrivalDate = ko.observable();
     self.PriceFrom = ko.observable();
     self.PriceTo = ko.observable();
+  
 
     //This array which will contain the list of flights from the database
     self.flights = ko.observableArray();
@@ -22,25 +23,30 @@ var SearchForFlightsViewModel = function() {
     //function used when submit button is clicked
     self.submit = function() {
       //just pushing garbage data into the array
-      self.flights.push(new Flight("flight1", "100", "location1", "destination1", "today", "tomorrow"));
-      self.flights.push(new Flight("flight2", 100, "location2", "destination2", new Date("December 17, 1995 03:24:00"), new Date("December 17, 1995 03:24:00")));
-      self.flights.push(new Flight("flight3", 100, "location2", "destination3", new Date("December 17, 1995 03:24:00"), new Date("December 17, 1995 03:24:00")));
       
       initialize();
     }
     
     function initialize() {
-      $.post({
-        url: "https://ide.c9.io/ianpara/goldteam-project/locations:80",
-        success: function (data) {
-          self.flights(data);
-        },
-        dataType: "json"
-      });
+      $.ajax({
+        url: "https://goldteam-project-ianpara.c9users.io/api/product/read.php",
+        type: "GET",
+        dataType: "json",
+        success: function (result) {
+            //saving data to exist in scope of the viewmodel and not simply this request
+            self.flights(result.records);
+            },
+		error: function (data) {
+			self.flights.push(new Flight("flight1", "100", "location1", "destination1", "today", "tomorrow"));
+            self.flights.push(new Flight("flight2", 100, "location2", "destination2", new Date("December 17, 1995 03:24:00"), new Date("December 17, 1995 03:24:00")));
+            self.flights.push(new Flight("flight3", 100, "location2", "destination3", new Date("December 17, 1995 03:24:00"), new Date("December 17, 1995 03:24:00")));
+		    }
+        });
     }
     
+    initialize();
 };
 
 
 //binding the viewmodel to the view
-      ko.applyBindings(new SearchForFlightsViewModel());
+ko.applyBindings(new SearchForFlightsViewModel());

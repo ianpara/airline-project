@@ -3,16 +3,19 @@ class Flights{
  
     // database connection and table name
     private $conn;
-    private $table_name = "flights";
+    private $table_name = "flight";
  
     // object properties
-    public $FlightNumber;
-    public $Price;
-    public $Location;
-    public $Destination;
-    public $DepartureDate;
-    public $ArrivalDate;
-    public $Created;
+    public $idflight;
+    public $available_seats;
+    public $price;
+    public $departure_loc;
+    public $destination_loc;
+    public $departure_time;
+    public $arrival_time;
+    public $gate;
+    public $departure_date;
+    public $arrival_date;
  
     // constructor with $db as database connection
     public function __construct($db){
@@ -24,11 +27,11 @@ class Flights{
  
     // select all query
     $query = "SELECT
-                FlightNumber, Price, Location, Destination, DepartureDate, ArrivalDate, Created
+                idflight, available_seats, price, departure_loc, destination_loc, arrival_time, gate, arrival_date, departure_date, departure_time
             FROM
-                " . $this->table_name . "
+                flight
             ORDER BY
-                Created DESC";
+                price DESC";
  
     // prepare query statement
     $stmt = $this->conn->prepare($query);
@@ -37,5 +40,6 @@ class Flights{
     $stmt->execute();
  
     return $stmt;
-}
+    }
+    
 }

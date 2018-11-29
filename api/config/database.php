@@ -2,9 +2,9 @@
 class Database{
  
     // specify your own database credentials
-    private $host = "127.0.0.1";
-    private $db_name = "airline2";
-    private $username = "ianpara";
+    private $host = "localhost";
+    private $db_name = "airline";
+    private $username = "root";
     private $password = "";
     public $conn;
  

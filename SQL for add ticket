@@ -1,0 +1,11 @@
+INSERT INTO customer (first_name, last_name, cc_number, card_verification_code)
+VALUES ('$first_name', '$last_name', '$cc_number', '$card_verification_code');
+
+$idcustomer =
+SELECT idcustomer 
+FROM customer 
+WHERE first_name = '$first_name' AND last_name = '$last_name';
+
+
+INSERT INTO ticket (idcustomer, idflight, number_of_bags)
+VALUES ('$idcustomer', '$idflight', '$number_of_bags');

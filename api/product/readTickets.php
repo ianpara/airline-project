@@ -5,14 +5,14 @@ header("Content-Type: application/json; charset=UTF-8");
  
 // include database and object files
 include_once '../config/database.php';
-include_once '../objects/flights.php';
+include_once '../objects/tickets.php';
  
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
  
 // initialize object
-$product = new flights($db);
+$product = new tickets($db);
  
 // query products
 $stmt = $product->read();
@@ -35,6 +35,8 @@ if($num>0){
         extract($row);
  
         $product_item=array(
+            "first_name" => $first_name,
+            "last_name" => $last_name,
             "idflight" => $idflight,
             "available_seats" => $available_seats,
             "price" => $price,
@@ -42,9 +44,7 @@ if($num>0){
             "destination_loc" => $destination_loc,
             "departure_time" => $departure_time,
             "arrival_time" => $arrival_time,
-            "gate" => $gate,
-            "arrival_date" => $arrival_date,
-            "departure_date" => $departure_date
+            "gate" => $gate
         );
  
         array_push($products_arr["records"], $product_item);
@@ -64,6 +64,6 @@ else{
  
     // tell the user no products found
     echo json_encode(
-        array("message" => "No flights found.")
+        array("message" => "No tickets found.")
     );
 }
